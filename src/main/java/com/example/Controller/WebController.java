@@ -3,7 +3,7 @@ package com.example.Controller;
 import com.example.Service.AccountService;
 import com.example.entity.RestBean;
 import com.example.entity.VO.RegisterVO;
-import com.example.entity.VO.forgetVO;
+import com.example.entity.VO.ForgetVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -31,7 +31,7 @@ public class WebController {
         return  messageHandle(() -> accountService.registerVerification(form));
     }
     @PostMapping("/forget")
-    public RestBean<Void> forget(@Valid @RequestBody forgetVO form) {
+    public RestBean<Void> forget(@Valid @RequestBody ForgetVO form) {
         return  messageHandle(() -> accountService.forgetVerification(form));
     }
     private RestBean<Void> messageHandle(Supplier<String> function) {

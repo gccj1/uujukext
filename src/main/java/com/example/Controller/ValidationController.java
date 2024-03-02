@@ -2,7 +2,6 @@ package com.example.Controller;
 
 import com.example.entity.RestBean;
 import jakarta.validation.ValidationException;
-import jakarta.validation.executable.ValidateOnExecution;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

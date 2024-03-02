@@ -6,7 +6,7 @@ import com.example.Mapper.AccountMapper;
 import com.example.Service.AccountService;
 import com.example.entity.DTO.Account;
 import com.example.entity.VO.RegisterVO;
-import com.example.entity.VO.forgetVO;
+import com.example.entity.VO.ForgetVO;
 import com.example.utils.Const;
 import com.example.utils.LimitUtils;
 import jakarta.annotation.Resource;
@@ -16,7 +16,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -56,6 +55,11 @@ public class AccountServiceImp extends ServiceImpl<AccountMapper, Account> imple
     }
 
     @Override
+    public Account findById(int id) {
+        return query().eq("id", id).one();
+    }
+
+    @Override
     public  String emailVerification(String type, String email, String ip) {
         synchronized(ip.intern()){
             if(isEmailUsed(email) && Objects.equals(type, "register")) return "该邮箱已被注册";
@@ -88,7 +92,7 @@ public class AccountServiceImp extends ServiceImpl<AccountMapper, Account> imple
     }
 
     @Override
-    public String forgetVerification(forgetVO forgetVO) {
+    public String forgetVerification(ForgetVO forgetVO) {
         String email=forgetVO.getEmail();
         String code=Template.opsForValue().get(Const.EMAIL_CODE_FORGET+email);
         if(code==null) return "请先获取验证码";

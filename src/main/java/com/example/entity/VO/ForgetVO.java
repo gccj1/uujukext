@@ -4,7 +4,7 @@ import jakarta.validation.constraints.Email;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 @Data
-public class forgetVO {
+public class ForgetVO {
     @Length(min = 6,max = 15)
     String password;
     @Email
